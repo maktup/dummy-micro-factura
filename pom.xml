@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	                         http://maven.apache.org/xsd/maven-4.0.0.xsd" >
+ 
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>pe.com.capacitacion</groupId>
+	<artifactId>dummy-micro-factura</artifactId>	
+	<name>dummy-micro-factura</name>
+	<description>dummy-micro-factura</description>
+    <packaging>jar</packaging>
+    <version>1.0.0</version>  
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.5.RELEASE</version> 
+        <relativePath/>  
+    </parent> 
+       
+	<properties>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding> 
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-boot-admin.version>2.0.3</spring-boot-admin.version> 
+		<springfox-version>2.7.0</springfox-version>
+	</properties>
+	 
+	<dependencyManagement>
+		<dependencies>
+		    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-dependencies</artifactId>
+				<version>${spring-boot-admin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.SR2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+	    <repository>
+	      <id>jaunt</id>
+	      <url>https://repo.clojars.org/org/jaunt-lang/jaunt/0.2.1</url>
+	    </repository>
+	</repositories>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>  
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId> 
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId> 
+			<scope>test</scope>
+		</dependency> 
+ 
+ 	    <!-- IMPORTANTE: [FEIGN], generacion de CLIENTEs de WS -->	
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId> 
+		</dependency>
+ 	
+ 	    <!-- IMPORTANTE: [SLEUTH & ZIPKIN], trazabilidad DISTRIBUIDA --> 	
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-sleuth</artifactId> 
+		</dependency>	
+ 	
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId> 
+		</dependency>		
+ 
+	    <!-- IMPORTANTE: [ACTUATOR], recopilacion de metricas -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId> 
+		</dependency>
+        
+	    <!-- IMPORTANTE: [KUBERNETES] --> 
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-kubernetes-all</artifactId>
+		    <version>0.3.0.RELEASE</version>
+		</dependency> 
+ 
+	    <!-- IMPORTANTE: [MICROMETER] -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-core</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+ 
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-version}</version>
+        </dependency>
+    
+        <!-- JSON POINTER/PATCH -->
+        <dependency>
+	      <groupId>org.javolution</groupId>
+	      <artifactId>javolution-core-java</artifactId>
+	      <version>6.0.0</version>
+        </dependency>
+		  
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>javax.json</artifactId>
+		    <version>1.1.4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.json</groupId>
+		    <artifactId>javax.json-api</artifactId>
+		    <version>1.1.4</version>
+		</dependency>
+  
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20131018</version>
+		</dependency>
+  
+  
+		<!-- OTROS -->	
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.6</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>			 
+ 
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.0.pr2</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+ 
+</project>
+
