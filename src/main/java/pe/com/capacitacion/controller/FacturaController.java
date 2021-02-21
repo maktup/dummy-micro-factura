@@ -30,12 +30,12 @@ import pe.com.capacitacion.util.UtilWS;
        private UtilWS objUtlWS      = null;
        
        //LOCALMENTE: 
-	   //private String vURLClientes  = "http://localhost:8081/dummy-micro-cliente/get/clientes/1";
-	   //private String vURLProductos = "http://localhost:8082/dummy-micro-producto/get/productos/1";
+	   private String vURLClientes  = "http://192.168.99.100:32556/dummy-micro-cliente/get/clientes/1";
+	   private String vURLProductos = "http://192.168.99.100:30586/dummy-micro-producto/get/productos/1";
        
 	   //KUBERNETES: 'SERVICE.NAMESPACE.SVC.CLUSTER.LOCAL:PUERTO/URI'
-	   private String vURLClientes  = "my-cliente-service.dummy-istio.svc.cluster.local:8080/dummy-micro-cliente/get/clientes/1";
-	   private String vURLProductos = "my-producto-service.dummy-istio.svc.cluster.local:8080/dummy-micro-producto/get/productos/1";
+	   //private String vURLClientes  = "my-cliente-service.dummy-istio.svc.cluster.local:8080/dummy-micro-cliente/get/clientes/1";
+	   //private String vURLProductos = "my-producto-service.dummy-istio.svc.cluster.local:8080/dummy-micro-producto/get/productos/1";
 	   
 	   private JsonReader       objReader        = null;
 	   private JsonStructure    objJsonStructure = null;		       
