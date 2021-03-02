@@ -56,11 +56,13 @@ import pe.com.capacitacion.util.UtilWS;
  
 			   this.objUtlWS    = new UtilWS();
 			   this.objTemplate = new RestTemplate();
-			   
-		       String vResClientesJSON = objTemplate.getForObject( this.vURLClientes, String.class );
+	 
+			   //String vResClientesJSON = this.objTemplate.getForObject( "http://callme-service:8080/callme/ping", String.class);
+    	       
+			   String vResClientesJSON = this.objTemplate.getForObject( "http://my-cliente-service-ci:8080/dummy-micro-cliente/get/clientes/1", String.class );
 		       log.info( "vResClientesJSON: " + vResClientesJSON );
  
-		       String vResProductosJSON = objTemplate.getForObject( this.vURLProductos, String.class );
+		       String vResProductosJSON = this.objTemplate.getForObject( "http://my-producto-service-ci:8080/dummy-micro-producto/get/productos/1", String.class );
 		       log.info( "vResProductosJSON: " + vResProductosJSON );
 		       		       
 		       try{
