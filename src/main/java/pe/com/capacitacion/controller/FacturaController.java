@@ -28,14 +28,10 @@ import pe.com.capacitacion.util.UtilWS;
  	 
 	   private String vArchivoJson  = "{\"numero\": \"1\", \"fecha\": \"1\", \"clientes\":{\"nombre\": \"1\", \"direccion\": \"1\", \"dni\": \"1\"}, \"productos\": {\"producto\": [{\"cantidad\": 1, \"nombre\": \"1\", \"precio\": 1, \"importe\": 1}] }, \"totalPagar\": 1}";  
        private UtilWS objUtlWS      = null;
-       
-       //LOCALMENTE: 
-	   private String vURLClientes  = "http://192.168.99.100:32556/dummy-micro-cliente/get/clientes/1";
-	   private String vURLProductos = "http://192.168.99.100:30586/dummy-micro-producto/get/productos/1";
-       
+ 
 	   //KUBERNETES: 'SERVICE.NAMESPACE.SVC.CLUSTER.LOCAL:PUERTO/URI'
-	   //private String vURLClientes  = "my-cliente-service.dummy-istio.svc.cluster.local:8080/dummy-micro-cliente/get/clientes/1";
-	   //private String vURLProductos = "my-producto-service.dummy-istio.svc.cluster.local:8080/dummy-micro-producto/get/productos/1";
+	   private String vURLClientes  = "http://my-cliente-service-ci:8080/dummy-micro-cliente/get/clientes/1";
+	   private String vURLProductos = "http://my-producto-service-ci:8080/dummy-micro-producto/get/productos/1";
 	   
 	   private JsonReader       objReader        = null;
 	   private JsonStructure    objJsonStructure = null;		       
@@ -56,13 +52,11 @@ import pe.com.capacitacion.util.UtilWS;
  
 			   this.objUtlWS    = new UtilWS();
 			   this.objTemplate = new RestTemplate();
-	 
-			   //String vResClientesJSON = this.objTemplate.getForObject( "http://callme-service:8080/callme/ping", String.class);
-    	       
-			   String vResClientesJSON = this.objTemplate.getForObject( "http://my-cliente-service-ci:8080/dummy-micro-cliente/get/clientes/1", String.class );
+ 
+			   String vResClientesJSON = this.objTemplate.getForObject( this.vURLClientes, String.class );
 		       log.info( "vResClientesJSON: " + vResClientesJSON );
  
-		       String vResProductosJSON = this.objTemplate.getForObject( "http://my-producto-service-ci:8080/dummy-micro-producto/get/productos/1", String.class );
+		       String vResProductosJSON = this.objTemplate.getForObject( this.vURLProductos, String.class );
 		       log.info( "vResProductosJSON: " + vResProductosJSON );
 		       		       
 		       try{

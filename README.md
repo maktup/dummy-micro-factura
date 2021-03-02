@@ -11,14 +11,17 @@ Los LINKs del 'MICROSERVICIO' son:
   1. Las 'URI' de tipo [GET] son:
      ---------------------------
   
-     - consultarFacturas []: 
-	   http://localhost:8080/dummy-micro-factura/get/facturas
+     - consultarFacturas [NODE-PORT]: 
+	   $ curl http://localhost:8080/dummy-micro-factura/get/facturas
 	   
+     - consultarFacturas [CLUSTER-IP]: 
+	   $ curl http://my-factura-service-ci:8080/dummy-micro-factura/get/facturas
+	  
 	   
-  Estos CONSULTARÁN los MicroServicios INTERNOS de:
+  Estos 'CONSULTARÁN' los MicroServicios 'INTERNOS' de:
   
-  - my-cliente-service.default.svc.cluster.local:8080/dummy-micro-cliente/get/clientes/1
-  - my-producto-service.default.svc.cluster.local:8080/dummy-micro-producto/get/productos/1
+  - $ curl my-cliente-service-ci:8080/dummy-micro-cliente/get/clientes/1
+  - $ curl my-producto-service-ci:8080/dummy-micro-producto/get/productos/1
 	  
   
 DETALLE:
